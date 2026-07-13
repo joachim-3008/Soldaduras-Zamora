@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Soldaduras Zamora</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body class="bg-zinc-800 text-white min-h-screen flex flex-col font-sans">
+
+    <header class="bg-zinc-900 border-b border-zinc-700 sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="/media/logo-soldadura.jpg" alt="Soldaduras Zamora" class="w-12 h-12 rounded-full object-cover border-2 border-amber-500">
+                <span class="font-black text-lg tracking-widest uppercase hidden sm:block">Zamora</span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="/login" class="font-mono text-xs uppercase tracking-wider text-zinc-300 hover:text-amber-400 transition-colors py-2 px-3">
+                    Iniciar Sesión
+                </a>
+                <a href="/signup" class="font-sans font-black bg-amber-500 hover:bg-amber-600 text-zinc-950 py-2 px-4 rounded-lg text-xs uppercase tracking-widest shadow-[0_2px_10px_rgba(245,158,11,0.2)] transition-all">
+                    Crear Cuenta
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative bg-zinc-900 overflow-hidden border-b border-zinc-700 py-20 px-6 flex-grow flex items-center">
+        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center gap-6">
+            <img src="/media/logo-soldadura.jpg" alt="Soldaduras Zamora" class="w-32 h-32 rounded-full object-cover border-4 border-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.3)] mb-2">
+            
+            <h1 class="font-sans font-black text-4xl md:text-5xl tracking-widest uppercase leading-none">
+                Bienvenido a <span class="text-amber-500">Soldaduras Zamora 3009, C.A</span>
+            </h1>
+            
+            <p class="font-mono text-sm text-zinc-400 max-w-2xl tracking-wide">
+                Tu tienda online oficial de herramientas profesionales, equipos de herrería y suministros industriales de alta resistencia. Todo lo que necesitas para forjar tus proyectos.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+                <a href="/signup" class="font-sans font-black bg-amber-500 hover:bg-amber-600 text-zinc-950 py-3.5 px-8 rounded-lg text-sm uppercase tracking-widest shadow-[0_4px_15px_rgba(245,158,11,0.25)] transition-all">
+                    Explorar Catálogo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-12">
+            <h2 class="font-sans font-black text-2xl tracking-widest uppercase">Nuestra Ubicación e Información</h2>
+            <p class="font-mono text-xs text-zinc-400 uppercase tracking-wider mt-1">Conoce más sobre nuestra sede comercial</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-700 shadow-lg flex flex-col gap-3">
+                <div class="text-amber-500 text-xl font-black font-mono">⚡ HORARIOS</div>
+                <p class="font-mono text-sm text-zinc-300">Lunes a Viernes:<br><span class="text-white">8:00 AM - 5:00 PM</span></p>
+                <p class="font-mono text-sm text-zinc-300">Sábados:<br><span class="text-white">8:00 AM - 1:00 PM</span></p>
+            </div>
+
+            <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-700 shadow-lg flex flex-col gap-3">
+                <div class="text-amber-500 text-xl font-black font-mono">📍 EL LOCAL</div>
+                <p class="font-sans text-sm text-zinc-300 leading-relaxed">
+                    Calle Ramón A. Blanco, Segundo Boulevard de Guatire, Local A-2<br>
+                    <span class="text-zinc-400 text-xs font-mono">Punto de referencia: Al lado de Tealca.</span>
+                </p>
+                <a href="https://maps.app.goo.gl/y7gWWHSCEDfoyexg6?g_st=aw" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center gap-2 font-mono text-[11px] font-bold bg-zinc-950 hover:bg-zinc-850 text-amber-400 py-2 px-4 rounded-lg border border-zinc-700 transition-all uppercase tracking-wider">
+                    Ver en Google Maps ↗
+                </a>
+            </div>
+            
+
+            <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-700 shadow-lg flex flex-col gap-3">
+                <div class="text-amber-500 text-xl font-black font-mono">🛠️ ATENCIÓN</div>
+                <p class="font-mono text-sm text-zinc-300">Ventas al mayor y detal.</p>
+                <p class="font-mono text-xs text-zinc-400">Contacto directo para presupuestos y soporte técnico corporativo.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-zinc-950 border-t border-zinc-800 py-8 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div class="font-mono text-xs text-zinc-500">
+                &copy; 2026 SOLDADURAS ZAMORA 3009, C.A. Todos los derechos reservados.
+            </div>
+            
+            <div class="flex gap-6 font-mono text-xs">
+                <a href="/privacy" class="text-zinc-400 hover:text-amber-400 transition-colors">Política de Privacidad</a>
+                <a href="/terms" class="text-zinc-400 hover:text-amber-400 transition-colors underline decoration-amber-500/50">Términos y Condiciones Generales</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
