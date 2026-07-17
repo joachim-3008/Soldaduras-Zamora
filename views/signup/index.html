@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Mi Proyecto</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body class="bg-zinc-800 min-h-screen flex items-center justify-center p-4">
     <!-- Tarjeta de registro comercial -->
+    <div id="notification"></div>
+
     <div
       class="bg-zinc-900 p-8 rounded-2xl border border-zinc-700 shadow-2xl w-full max-w-md flex flex-col items-center gap-6"
     >
@@ -32,7 +35,7 @@
       </div>
 
       <!-- Formulario de registro para la tienda -->
-      <form class="w-full flex flex-col gap-4">
+      <form id="register-form" class="w-full flex flex-col gap-4">
         <!-- Campo: Nombre -->
         <div class="flex flex-col gap-1.5">
           <label
@@ -40,10 +43,18 @@
             >Nombre Completo / Razón Social</label
           >
           <input
+            id="fullname"
             type="text"
             placeholder="Ej: Juan Pérez o Inversiones Z, C.A."
             class="bg-zinc-950 text-white placeholder-zinc-600 font-mono text-sm px-4 py-2.5 rounded-lg border border-zinc-700 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
           />
+          <p
+            id="information"
+            class="font-mono text-[8.5px] text-zinc-400 mt-0.5 tracking-normal leading-tight"
+          >
+            Debe tener entre 3 y 16 caracteres (letras, números, espacios o
+            guiones bajos).
+          </p>
         </div>
 
         <!-- Campo: Correo -->
@@ -53,10 +64,17 @@
             >Correo Electrónico</label
           >
           <input
+            id="email"
             type="email"
             placeholder="usuario@correo.com"
             class="bg-zinc-950 text-white placeholder-zinc-600 font-mono text-sm px-4 py-2.5 rounded-lg border border-zinc-700 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
           />
+          <p
+            id="information"
+            class="font-mono text-[8.5px] text-zinc-400 mt-0.5 tracking-normal leading-tight"
+          >
+            Debe ser un formato de correo válido (ejemplo@dominio.com).
+          </p>
         </div>
 
         <!-- Campo: Contraseña -->
@@ -66,40 +84,67 @@
             >Contraseña</label
           >
           <input
+            id="password"
             type="password"
             placeholder="••••••••"
             class="bg-zinc-950 text-white placeholder-zinc-600 font-mono text-sm px-4 py-2.5 rounded-lg border border-zinc-700 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
           />
+          <p
+            id="information"
+            class="font-mono text-[8.5px] text-zinc-400 mt-0.5 tracking-normal leading-tight"
+          >
+            Debe tener entre 6 y 12 caracteres, con al menos una mayúscula, una
+            minúscula y un número.
+          </p>
         </div>
 
+        <!-- Campo: Confirmar Contraseña -->
         <div class="flex flex-col gap-1.5">
           <label
             class="font-mono text-xs text-zinc-300 uppercase tracking-wider"
             >Comfirmar Contraseña</label
           >
           <input
+            id="confirm-password"
             type="password"
             placeholder="••••••••"
             class="bg-zinc-950 text-white placeholder-zinc-600 font-mono text-sm px-4 py-2.5 rounded-lg border border-zinc-700 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
           />
+          <p
+            id="information"
+            class="font-mono text-[8.5px] text-zinc-400 mt-0.5 tracking-normal leading-tight"
+          >
+            Las contraseñas ingresadas deben coincidir exactamente.
+          </p>
         </div>
 
         <!-- Botón Registrar (Llamativo estilo EPA/Damasco pero con el toque de herrería) -->
         <button
+          id="register-button"
           type="submit"
           class="font-sans font-black bg-amber-500 hover:bg-amber-600 text-zinc-950 py-3 px-6 rounded-lg w-full uppercase tracking-widest shadow-[0_4px_20px_rgba(245,158,11,0.15)] transition-all mt-2"
+          disabled
         >
           Registrarme
         </button>
 
         <!-- Link para volver al Login -->
-        <p class="font-mono text-xs text-center text-zinc-400 mt-2">
-          ¿Ya tienes cuenta?
-          <a href="/login" class="text-amber-400 hover:underline"
-            >Inicia sesión</a
+        <div
+          class="font-mono text-xs text-center text-zinc-400 mt-4 flex flex-col gap-2"
+        >
+          <p>
+            ¿Ya tienes cuenta?
+            <a href="/login" class="text-amber-400 hover:underline"
+              >Inicia sesión</a
+            >
+          </p>
+
+          <a href="/home" class="text-amber-400 hover:underline"
+            >Volver al Inicio</a
           >
-        </p>
+        </div>
       </form>
     </div>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>
