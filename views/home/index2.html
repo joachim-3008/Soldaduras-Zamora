@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Productos - Soldaduras Zamora</title>
+    <!-- Tailwind CSS CDN -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="bg-zinc-800 text-white min-h-screen flex flex-col font-sans">
+    
+    <!-- CONTENEDOR OBLIGATORIO PARA LAS NOTIFICACIONES -->
+    <div id="notification"></div>
+
+    <!-- NAVBAR SUPERIOR -->
+    <header class="bg-zinc-900 border-b border-zinc-700 px-6 py-3 flex items-center justify-between shadow-md">
+      <!-- Logo Reducido y Controlado -->
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full overflow-hidden border border-amber-500 shrink-0 flex items-center justify-center bg-white">
+          <img
+            src="/media/logo-soldadura.jpg"
+            alt="Soldaduras Zamora"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span class="font-sans font-black text-base tracking-widest uppercase block">
+          Soldaduras Zamora
+        </span>
+      </div>
+
+      <!-- NAVBAR DINÁMICO -->
+      <nav class="flex items-center gap-6 font-mono text-xs uppercase tracking-wider">
+        <!-- Ver Carrito -->
+        <a href="/cart" class="flex items-center gap-2 text-zinc-300 hover:text-amber-400 transition-all font-bold">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-amber-500">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          Ver Carrito
+        </a>
+
+        <!-- Cerrar Sesión -->
+        <button id="logout-button" class="text-zinc-400 hover:text-red-400 transition-all font-bold flex items-center gap-1 cursor-pointer bg-transparent border-none outline-none">
+          ✕ Cerrar Sesión
+        </button>
+      </nav>
+    </header>
+
+    <!-- CUERPO PRINCIPAL -->
+    <!-- CUERPO PRINCIPAL (Mantiene tu diseño original, pero bloquea el alto de la pantalla) -->
+<div class="flex flex-row w-full max-w-[100%] mx-auto p-6 gap-6 h-[calc(100vh-80px)] overflow-hidden">
+  
+  <!-- CONTENEDOR DE LAS CATEGORÍAS (Se queda 100% estático, no se mueve NUNCA) -->
+  <div class="w-72 shrink-0">
+    <div class="fixed top-0 bg-zinc-900 border border-zinc-700 rounded-xl p-6 flex flex-col gap-5 shadow-xl h-full">
+      <h2 class="font-sans font-black text-sm uppercase tracking-widest text-amber-500 border-b border-zinc-700 pb-3">
+        Categorías
+      </h2>
+      <ul class="font-mono text-sm uppercase tracking-wide flex flex-col gap-4 text-zinc-300">
+        <li><a href="#" class="hover:text-amber-400 block transition-all py-1 flex items-center gap-2"><span>•</span> Herramientas alámbricas</a></li>
+        <li><a href="#" class="hover:text-amber-400 block transition-all py-1 flex items-center gap-2"><span>•</span> Herramientas inalámbricas</a></li>
+        <li><a href="#" class="hover:text-amber-400 block transition-all py-1 flex items-center gap-2"><span>•</span> Baterías</a></li>
+        <li><a href="#" class="hover:text-amber-400 block transition-all py-1 flex items-center gap-2"><span>•</span> Cargadores</a></li>
+        <li><a href="#" class="hover:text-amber-400 block transition-all py-1 flex items-center gap-2"><span>•</span> PVC</a></li>
+        <li><a href="#" class="hover:text-amber-400 block transition-all py-1 flex items-center gap-2"><span>•</span> Cables</a></li>
+        <li><a href="#" class="text-zinc-500 hover:text-amber-400 block transition-all py-1 italic">ETC...</a></li>
+      </ul>
+    </div>
+  </div>
+
+      <!-- CONTENIDO CENTRAL DE LA TIENDA (Añadido ml-80 para respetar el espacio de la barra fija) -->
+      <main class="flex-1 w-full flex flex-col gap-6 ml-80">
+        
+        <!-- BARRA DE BÚSQUEDA -->
+        <div class="w-full">
+          <form id="search-form" class="w-full flex">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar electrodos, inversores, herramientas..."
+              class="w-full bg-zinc-950 text-white placeholder-zinc-600 font-mono text-sm px-4 py-3 rounded-lg border border-zinc-700 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all shadow-inner"
+            />
+          </form>
+        </div>
+
+        <!-- SECCIÓN DE PRODUCTOS -->
+        <section class="bg-zinc-900 border border-zinc-700 rounded-xl p-6 shadow-xl flex flex-col gap-6 w-full">
+          
+          <div class="flex items-center justify-between border-b border-zinc-700 pb-3">
+            <h3 class="font-sans font-black text-base uppercase tracking-widest text-zinc-100">
+              Catálogo de Productos
+            </h3>
+            <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-wider">
+              Mostrando listado privado
+            </span>
+          </div>
+
+          <!-- CONTENEDOR GRID ADAPTABLE PARA LOS PRODUCTOS -->
+          <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+            
+            <!-- TARJETA 1 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Inversor de Soldadura 200A Pro
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$180.00</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 2 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Electrodos Revestidos E6013 - 5KG
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$25.50</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 3 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Careta de Soldar Fotosensible
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$45.00</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 4 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Pinza de Masa para Tierra 300A
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$12.90</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 5 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Esmeril Angular de 4-1/2 Pulgadas
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$65.00</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 6 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Antorcha TIG Profesional WP-26
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$38.20</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 7 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Cinta Métrica de Alta Resistencia 8M
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$9.50</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 8 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Guantes de Cuero para Soldador
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$14.00</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 9 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Gafas de Seguridad Oscuras UV
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$5.50</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 10 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Regulador de Gas Argón / CO2
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$32.00</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 11 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Martillo Picador de Escoria
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$8.90</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+            <!-- TARJETA 12 -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-zinc-700 transition-all w-full max-w-xs justify-self-start">
+              <div class="w-full h-32 bg-zinc-900 rounded-md overflow-hidden flex items-center justify-center border border-zinc-800">
+                <span class="text-zinc-600 font-mono text-xs font-bold">[ Imagen Producto ]</span>
+              </div>
+              <div class="flex flex-col gap-1">
+                <h4 class="font-sans font-bold text-xs text-zinc-100 uppercase tracking-wide line-clamp-2">
+                  Discos de Corte Metálico de 4-1/2 (Pack 10)
+                </h4>
+                <p class="font-mono text-amber-500 font-black text-base">$15.00</p>
+              </div>
+              <button class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 font-mono text-[10px] uppercase tracking-widest py-2 rounded font-black transition-all border border-zinc-700 hover:border-amber-500">
+                Agregar al Carrito
+              </button>
+            </div>
+
+          </div>
+
+          <!-- INFORMACIÓN DE LA TIENDA -->
+          <div class="pt-4 border-t border-zinc-800 flex justify-between items-center font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+            <span>Soporte: info@soldaduraszamora.com</span>
+            <span>Miranda, Venezuela</span>
+          </div>
+
+        </section>
+      </main>
+    </div>
+
+  </body>
+</html>

@@ -9,6 +9,7 @@
   </head>
   <body class="bg-zinc-800 min-h-screen flex items-center justify-center p-4">
     <!-- Tarjeta Principal de Login -->
+     <div id="notification"></div>
     <div
       class="bg-zinc-900 p-8 rounded-2xl border border-zinc-700 shadow-2xl w-full max-w-md flex flex-col items-center gap-6"
     >
@@ -33,18 +34,18 @@
         </p>
       </div>
 
-      <!-- Formulario de Login (Apunta a tu ruta de autenticación en Express) -->
-      <form action="/login" method="POST" class="w-full flex flex-col gap-4">
+      <!-- Formulario de Login (Agregado id="login-form") -->
+      <form id="login-form" class="w-full flex flex-col gap-4">
         <!-- Campo: Correo Electrónico -->
         <div class="flex flex-col gap-1.5">
           <label
-            for="correo"
+            for="email"
             class="font-mono text-xs text-zinc-300 uppercase tracking-wider"
             >Correo Electrónico</label
           >
           <input
             type="email"
-            id="correo"
+            id="email" 
             name="correo"
             placeholder="usuario@correo.com"
             required
@@ -69,15 +70,16 @@
           />
         </div>
 
-        <!-- Botón de Ingreso Principal -->
+        <!-- Botón de Ingreso Principal (Agregado id="login-button") -->
         <button
           type="submit"
+          id="login-button"
           class="font-sans font-black bg-amber-500 hover:bg-amber-600 text-zinc-950 py-3 px-6 rounded-lg w-full uppercase tracking-widest shadow-[0_4px_20px_rgba(245,158,11,0.15)] transition-all mt-2"
         >
           Entrar al Sistema
         </button>
 
-        <!-- Enlace para ir al Registro que hicimos antes -->
+        <!-- Enlaces de navegación -->
         <div
           class="font-mono text-xs text-center text-zinc-400 mt-4 flex flex-col gap-2"
         >
@@ -94,5 +96,9 @@
         </div>
       </form>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>
