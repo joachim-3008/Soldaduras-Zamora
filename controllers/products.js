@@ -1,6 +1,6 @@
 const express = require("express");
-const Product = require("../models/product");
-const Category = require("../models/cargory");
+const Product = require("../models/Product");
+const Category = require("../models/Category");
 const { userExtractor, isAdmin } = require("../middleware/auth");
 
 const router = express.Router();
