@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-//modelos o esquemas de la base de datos
 const userSchema = new mongoose.Schema({
   email: {
     type: String,

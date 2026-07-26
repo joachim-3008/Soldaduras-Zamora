@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
-//modelos o esquemas de la base de datos
 const productSchema = new mongoose.Schema({
-    //id unico del producto en el local/negocio
   sku: {
     type: String,
     required: true,
@@ -22,6 +20,10 @@ const productSchema = new mongoose.Schema({
   stock: {
     type: Number,
     default: 0,
+  },
+  available: {
+    type: Boolean,
+    default: true,
   },
   category_id: {
     type: mongoose.Schema.Types.ObjectId,

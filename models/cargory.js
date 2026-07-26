@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-//modelos o esquemas de la base de datos
 const categorySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -11,9 +10,6 @@ const categorySchema = new mongoose.Schema({
     ref: "Category",
     default: null,
   },
-
-  //identificador del id unico de cada producto 
-
   slug: {
     type: String,
     required: true,

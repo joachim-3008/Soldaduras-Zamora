@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-//sub-esquema para cada item del pedido
 const itemSchema = new mongoose.Schema(
   {
     product_id: {
@@ -18,10 +17,9 @@ const itemSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { _id: false }
+  { _id: false },
 );
 
-//modelos o esquemas de la base de datos
 const pedidoSchema = new mongoose.Schema({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,

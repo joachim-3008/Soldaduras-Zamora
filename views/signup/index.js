@@ -5,20 +5,16 @@ const REGEX_USERNAME = /^[a-zA-Z0-9_ ]{3,16}$/;
 const REGEX_PHONE = /^(\+?\d{1,3})?(\d{7,12})$/;
 const REGEX_EMAIL = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-// El formulario completo (para capturar el evento de envío)
 const registerForm = document.getElementById("register-form");
 const registerButton = document.getElementById("register-button");
 
-// Inputs de datos
 const fullnameInput = document.getElementById("fullname");
 const emailInput = document.getElementById("email");
 const information = document.querySelectorAll("#information");
 
-// Inputs de contraseñas
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirm-password");
 
-// Validaciones del estado
 let nameValidation = false;
 let emailValidation = false;
 let passwordValidation = false;
@@ -50,7 +46,6 @@ const validation = (input, regexValidation, informationElement) => {
       : true;
 };
 
-// Eventos de escucha en tiempo real
 fullnameInput.addEventListener("input", (e) => {
   nameValidation = REGEX_USERNAME.test(fullnameInput.value);
   validation(fullnameInput, nameValidation, information[0]);
@@ -93,34 +88,28 @@ registerForm.addEventListener("submit", async (e) => {
 
     if (data && data.message === "Usuario registrado exitosamente") {
       createNotification(false, data.message);
-      
-      // Breve espera antes de redirigir al login
-      setTimeout(() => {
-        window.location.href = "../login/index.html"; 
-      }, 2000);
 
+      setTimeout(() => {
+        window.location.href = "../login/index.html";
+      }, 2000);
     } else {
       createNotification(false, data.message || "Usuario registrado.");
 
-      // Limpieza de campos
       fullnameInput.value = " ";
       emailInput.value = " ";
       passwordInput.value = " ";
       confirmPasswordInput.value = " ";
 
-      // Resetear banderas
       nameValidation = false;
       emailValidation = false;
       passwordValidation = false;
       matchValidation = false;
 
-      // Limpiar estilos Tailwind
       validation(fullnameInput, false);
       validation(emailInput, false);
       validation(passwordInput, false);
       validation(confirmPasswordInput, false);
     }
-
   } catch (error) {
     console.error(error);
     if (error.response && error.response.data && error.response.data.error) {
@@ -129,8 +118,7 @@ registerForm.addEventListener("submit", async (e) => {
       createNotification(true, "Error de conexión con el servidor.");
     }
   } finally {
-    // Restaurar estado del botón
-    registerButton.disabled = true; // Se queda deshabilitado hasta que el formulario sea válido de nuevo
+    registerButton.disabled = true;
     registerButton.innerHTML = originalButtonText;
   }
 });
