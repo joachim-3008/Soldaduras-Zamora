@@ -9,6 +9,7 @@ const loginRouter = require("./controllers/loginUser");
 const productsRouter = require("./controllers/products");
 const categoriesRouter = require("./controllers/categories");
 const { userExtractor } = require("./middleware/auth");
+const logoutRouter = require('./controllers/logout');
 
 const dns = require("dns");
 const { MONGO_URI } = require("./config");
@@ -31,6 +32,7 @@ app.use(express.static("views"));
 app.use(cookieParser());
 
 app.use("/", express.static(path.resolve("views", "home")));
+app.use("/nuevoProd", express.static(path.resolve("views", "nuevoProd")));
 app.use("/signup", express.static(path.resolve("views", "signup")));
 app.use("/login", express.static(path.resolve("views", "login")));
 app.use(
@@ -45,6 +47,7 @@ app.use("/catalogo", express.static(path.resolve("views", "catalogo")));
 
 app.post("/api/signup", registerUser);
 app.use("/api/login", loginRouter);
+app.use('/api/logout', logoutRouter);
 app.get("/api/me", userExtractor, (req, res) => {
   res.json(req.user);
 });

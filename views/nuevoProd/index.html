@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soldaduras Zamora - Nuevo Producto</title>
+    <link rel="stylesheet" href="/output.css" />
+  </head>
+  <body class="bg-zinc-900 text-white min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-zinc-950 overflow-x-hidden">
+    <div id="notification"></div>
+
+    <!-- NAVBAR SUPERIOR -->
+    <div id="navBar"></div>
+
+    <main class="flex-1 flex items-center justify-center p-6">
+      <div
+        id="new-create-product-card"
+        class="bg-zinc-950 border border-amber-500/60 rounded-2xl p-6 flex flex-col gap-4 shadow-2xl w-full max-w-2xl mx-auto"
+      >
+        <div
+          class="flex items-center justify-between border-b border-zinc-800 pb-3"
+        >
+          <h3
+            class="font-sans font-bold text-xs uppercase tracking-wider text-amber-500"
+          >
+            Nuevo Producto
+          </h3>
+          <button
+            id="new-close-form-btn"
+            type="button"
+            class="text-zinc-500 hover:text-zinc-200 text-sm font-mono p-1 rounded-lg hover:bg-zinc-900 transition-colors"
+          >
+            ✕
+          </button>
+        </div>
+
+        <form id="new-product-form" class="grid gap-4 md:grid-cols-2">
+          <!-- Input Nombre -->
+          <div class="flex flex-col gap-1 md:col-span-2">
+            <label
+              class="text-[11px] sm:text-sm font-mono uppercase tracking-wider text-zinc-400"
+              >Nombre</label
+            >
+            <input
+              type="text"
+              id="new-prod-name"
+              placeholder="Ej. Inversor de Soldadura 200A"
+              required
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-sm rounded-xl p-3 outline-none placeholder:text-zinc-600 transition-all font-sans"
+            />
+          </div>
+
+          <!-- Input SKU -->
+          <div class="flex flex-col gap-1 md:col-span-1">
+            <label
+              class="text-[11px] sm:text-sm font-mono uppercase tracking-wider text-zinc-400"
+              >SKU</label
+            >
+            <input
+              type="text"
+              id="new-prod-sku"
+              placeholder="Ej. SZ-200A"
+              required
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-sm rounded-xl p-3 outline-none placeholder:text-zinc-600 transition-all font-sans"
+            />
+          </div>
+
+          <!-- Input Precio -->
+          <div class="flex flex-col gap-1 md:col-span-1">
+            <label
+              class="text-[11px] sm:text-sm font-mono uppercase tracking-wider text-zinc-400"
+              >Precio ($)</label
+            >
+            <input
+              type="number"
+              step="0.01"
+              id="new-prod-price"
+              placeholder="0.00"
+              required
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-sm rounded-xl p-3 outline-none placeholder:text-zinc-600 transition-all font-mono"
+            />
+          </div>
+
+          <!-- Input Stock -->
+          <div class="flex flex-col gap-1 md:col-span-1">
+            <label
+              class="text-[11px] sm:text-sm font-mono uppercase tracking-wider text-zinc-400"
+              >Stock</label
+            >
+            <input
+              type="number"
+              id="new-prod-stock"
+              placeholder="0"
+              min="0"
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-sm rounded-xl p-3 outline-none placeholder:text-zinc-600 transition-all font-mono"
+            />
+          </div>
+
+          <!-- Input Categoría -->
+          <div class="flex flex-col gap-1 md:col-span-1">
+            <label
+              class="text-[11px] sm:text-sm font-mono uppercase tracking-wider text-zinc-400"
+              >Categoría</label
+            >
+            <input
+              type="text"
+              id="new-prod-category"
+              placeholder="Ej. Electrodos, Inversores..."
+              required
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-sm rounded-xl p-3 outline-none placeholder:text-zinc-600 transition-all font-sans"
+            />
+          </div>
+
+          <!-- Input Disponibilidad -->
+          <div class="flex flex-col gap-1 md:col-span-1">
+            <label
+              class="text-[11px] sm:text-sm font-mono uppercase tracking-wider text-zinc-400"
+              >Disponibilidad</label
+            >
+            <select
+              id="new-prod-availability"
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-sm rounded-xl p-3 outline-none transition-all font-sans"
+            >
+              <option value="available">Disponible</option>
+              <option value="unavailable">No disponible</option>
+            </select>
+          </div>
+
+          <!-- Input Breve Descripción -->
+          <div class="flex flex-col gap-1 md:col-span-2">
+            <label
+              class="text-[10px] font-mono uppercase tracking-wider text-zinc-400"
+              >Descripción</label
+            >
+            <textarea
+              id="new-prod-desc"
+              placeholder="Breve descripción técnica..."
+              rows="3"
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-xs rounded-xl p-3 outline-none placeholder:text-zinc-600 transition-all font-sans resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Input URL de Imagen -->
+          <div class="flex flex-col gap-1 md:col-span-2">
+            <label
+              class="text-[10px] font-mono uppercase tracking-wider text-zinc-400"
+              >Imágenes (URLs separadas por coma)</label
+            >
+            <textarea
+              id="new-prod-img"
+              placeholder="https://ejemplo.com/uno.jpg, https://ejemplo.com/dos.jpg"
+              rows="2"
+              class="bg-zinc-900 border border-zinc-800 focus:border-amber-500 text-zinc-100 text-xs rounded-xl p-3 outline-none placeholder:text-zinc-600 transition-all font-mono resize-none min-h-[90px]"
+            ></textarea>
+          </div>
+
+          <!-- Botón Submit -->
+          <button
+            type="submit"
+            class="md:col-span-2 mt-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-mono text-xs font-black py-3 rounded-xl uppercase tracking-wider transition-all shadow-lg cursor-pointer"
+          >
+            Guardar Producto
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../components/navbar.js"></script>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

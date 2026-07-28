@@ -19,10 +19,6 @@ loginForm.addEventListener("submit", async (e) => {
   loginButton.disabled = true;
   const originalButtonText = loginButton.innerHTML;
   loginButton.innerHTML = "Iniciando sesión...";
-
-  console.log("--- INTENTO DE INICIO DE SESIÓN ---");
-  console.log("Enviando credenciales de:", emailValue);
-
   try {
     const credentials = {
       email: emailValue,
