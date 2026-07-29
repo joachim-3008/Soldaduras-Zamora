@@ -2,14 +2,13 @@ import { isAdmin } from "../catalogo/index.js";
 import { createNotification } from "../components/notification.js";
 import { renderProducts } from "./renderProduct.js";
 import { fetchProducts } from "../catalogo/index.js";
+import { showFormEdit } from "../editProd/index.js";
 
 const productDetailContent = document.getElementById("product-detail-content");
 const productDetailView = document.getElementById("product-detail-view");
 const backToCatalogBtn = document.getElementById("back-to-catalog-btn");
 
 axios.defaults.withCredentials = true;
-
-
 
 const showProductDetail = (product) => {
   productDetailView.classList.remove("hidden");
@@ -57,18 +56,18 @@ const showProductDetail = (product) => {
     <div class="w-full lg:w-1/2 flex flex-col gap-4">
       <div class="bg-zinc-900 rounded-3xl p-5">
         <p class="text-[10px] uppercase tracking-widest text-zinc-500">Categoría</p>
-        <p class="font-bold text-zinc-100">${product.category_id?.name || "Sin categoría"}</p>
+        <p class="font-bold text-zinc-100">${product.category_id?.name || product.category || "Sin categoría"}</p>
       </div>
       <div class="bg-zinc-900 rounded-3xl p-5">
         <p class="text-[10px] uppercase tracking-widest text-zinc-500">Disponibilidad</p>
-        <p class="font-bold text-zinc-100">${product.available ? "Disponible" : "No disponible"}</p>
+        <p class="font-bold text-zinc-100">${product.available || product.availability === 'available' ? "Disponible" : "No disponible"}</p>
       </div>
       ${
         isAdmin
           ? `
         <div class="flex gap-3">
-          <button id="edit-product-btn" class="flex-1 bg-amber-500 hover:bg-amber-400 text-zinc-950 uppercase text-xs font-black py-3 rounded-2xl transition-all">Editar</button>
-          <button id="delete-product-btn" class="flex-1 bg-red-500 hover:bg-red-400 text-zinc-950 uppercase text-xs font-black py-3 rounded-2xl transition-all">Eliminar</button>
+          <button id="edit-product-btn" class="flex-1 bg-amber-500 hover:bg-amber-400 text-zinc-950 uppercase text-xs font-black py-3 rounded-2xl transition-all cursor-pointer">Editar</button>
+          <button id="delete-product-btn" class="flex-1 bg-red-500 hover:bg-red-400 text-zinc-950 uppercase text-xs font-black py-3 rounded-2xl transition-all cursor-pointer">Eliminar</button>
         </div>
       `
           : ""
@@ -111,23 +110,32 @@ const showProductDetail = (product) => {
     }
   }
 
+  // Manejar Click de Editar
   if (editBtn) {
     editBtn.addEventListener("click", () => {
-      openForm(product);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // 1. Ocultar la tarjeta de detalles
+      productDetailView.classList.add("hidden");
+      // 2. Ejecutar la función de edición importada
+      showFormEdit(product);
     });
   }
 
+  // Manejar Click de Eliminar
   if (deleteBtn) {
     deleteBtn.addEventListener("click", async () => {
-      await deleteProduct(product.id);
+      if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+        await deleteProduct(product.id);
+      }
     });
   }
 };
 
-// backToCatalogBtn.addEventListener("click", () => {
-//   productDetailView.classList.add("hidden");
-// });
+// Botón para volver al catálogo
+if (backToCatalogBtn) {
+  backToCatalogBtn.addEventListener("click", () => {
+    productDetailView.classList.add("hidden");
+  });
+}
 
 export const deleteProduct = async (productId) => {
   try {
@@ -138,25 +146,9 @@ export const deleteProduct = async (productId) => {
   } catch (error) {
     const message =
       error.response?.data?.error || "No se pudo eliminar el producto.";
-    createNotification(false, message);
+    // Notificación de error (true)
+    createNotification(true, message);
   }
 };
-// export const deleteProduct = async (productId, fetchProductsCallback) => {
-//   try {
-//     await axios.delete(`/api/products/${productId}`);
-    
-//     createNotification(false, "Producto eliminado correctamente.");
-//     productDetailView.classList.add("hidden");
-    
-//     if (typeof fetchProductsCallback === "function") {
-//       await fetchProductsCallback();
-//     }
-//   } catch (error) {
-//     const message =
-//       error.response?.data?.error || "No se pudo eliminar el producto.";
-//     createNotification(true, message);
-//   }
-// };
-export { 
-    showProductDetail,
-};
+
+export { showProductDetail };

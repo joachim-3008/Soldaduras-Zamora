@@ -3,6 +3,7 @@ import { showProductDetail } from "../components/productDetail.js";
 import { renderProducts } from "../components/renderProduct.js";
 import { deleteProduct } from "../components/productDetail.js";
 
+
 const currentUser = {
   id: null,
   roles: [],
@@ -113,91 +114,6 @@ const filterProductsByCategory = (category) => {
   renderProducts(filtered);
 };
 
-// const clearForm = () => {
-//   selectedProduct = null;
-//   newProductForm.reset();
-//   prodAvailability.value = "available";
-// };
-
-// const openForm = (product = null) => {
-//   if (!isAdmin) {
-//     createNotification(true, "Solo admin puede editar o crear productos.");
-//     return;
-//   }
-
-//   selectedProduct = product;
-//   createProductCard.classList.remove("hidden");
-
-//   if (!product) {
-//     clearForm();
-//     return;
-//   }
-
-//   //caso 2 si es producto existente 
-//   prodName.value = product.name || "";
-//   prodSku.value = product.sku || "";
-//   prodDesc.value = product.description || "";
-//   prodPrice.value = product.price || 0;
-//   prodStock.value = product.stock || 0;
-//   prodCategory.value = product.category_id?.name || "";
-//   prodImg.value = (product.pictures || []).join(", ");
-//   prodAvailability.value = product.available ? "available" : "unavailable";
-// };
-
-// const closeForm = () => {
-//   createProductCard.classList.add("hidden");
-//   clearForm();
-// };
-
-// const createProductPayload = () => {
-//   const pictures = prodImg.value
-//     .split(",")
-//     .map((url) => url.trim())
-//     .filter(Boolean);
-
-//   return {
-//     sku: prodSku.value.trim(),
-//     name: prodName.value.trim(),
-//     description: prodDesc.value.trim(),
-//     price: Number(prodPrice.value) || 0,
-//     stock: Number(prodStock.value) || 0,
-//     available: prodAvailability.value === "available",
-//     categoryName: prodCategory.value.trim(),
-//     pictures,
-//   };
-// };
-
-// //payload = paquete de datos 
-// const saveProduct = async () => {
-//   const payload = createProductPayload();
-
-//   if (!payload.sku || !payload.name || !payload.categoryName) {
-//     createNotification(true, "SKU, nombre y categoría son obligatorios.");
-//     return;
-//   }
-
-//   try {
-//     if (selectedProduct) {
-//       const { data } = await axios.put(
-//         `${API.products}/${selectedProduct.id}`,
-//         payload,
-//       );
-//       createNotification(false, "Producto actualizado correctamente.");
-//       selectedProduct = data;
-//     } else {
-//       await axios.post(API.products, payload);
-//       createNotification(false, "Producto creado correctamente.");
-//     }
-
-//     await fetchProducts();
-//     closeForm();
-//   } catch (error) {
-//     const message =
-//       error.response?.data?.error || "No se pudo guardar el producto.";
-//     createNotification(true, message);
-//   }
-// };
-
 //filtrado de la barra de busqueda
 const handleSearch = () => {
   const query = searchInput.value.trim().toLowerCase();
@@ -220,13 +136,6 @@ if (addProductCard) {
     window.location.href = "/nuevoProd";
   });
 }
-// closeFormBtn.addEventListener("click", closeForm);
-
-// newProductForm.addEventListener("submit", async (event) => {
-//   event.preventDefault();
-//   await saveProduct();
-// });
-
 if (searchInput) {
   searchInput.addEventListener("input", handleSearch);
 };
