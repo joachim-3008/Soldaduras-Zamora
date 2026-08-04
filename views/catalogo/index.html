@@ -6,13 +6,13 @@
     <title>Soldaduras Zamora - Catálogo</title>
     <link rel="stylesheet" href="/output.css" />
   </head>
-  <body class="bg-zinc-900 text-white min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-zinc-950 overflow-x-hidden">
+  <body class="bg-zinc-900 text-white min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-zinc-950 ">
     
     <!-- NOTIFICACIONES -->
     <div id="notification"></div>
 
     <!-- NAVBAR SUPERIOR -->
-    <div id="navBar"></div>
+  <div id="navBar" class="sticky top-0 w-full z-50"></div>
 
     <!-- BARRA DE BÚSQUEDA -->
     <div class="sticky top-[61px] sm:top-[69px] bg-zinc-900/95 backdrop-blur-md p-4 sm:px-6 pb-3 z-30 w-full border-b border-zinc-800/60">
@@ -49,7 +49,7 @@
       <main class="flex-1 flex flex-col gap-6 w-full min-w-0">
 
         <!-- HEADER DE LA SECCIÓN -->
-        <header class="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-md">
+        <header id="card-seccion" class="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-md">
           <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center font-black text-amber-500 text-sm shadow-inner">
             SZ
           </div>

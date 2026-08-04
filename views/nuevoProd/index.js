@@ -44,7 +44,7 @@ const clearForm = () => {
 
 const closeForm = () => {
   clearForm();
-  window.location.href = "/catalogo/index.html";
+  window.location.href = "/catalogo/";
 };
 
 const createProductPayload = () => {
@@ -84,7 +84,7 @@ const saveProduct = async () => {
     clearForm();
     
     setTimeout(() => {
-      window.location.href = "/catalogo/index.html";
+      window.location.href = "/catalogo/";
     }, 1500);
 
   } catch (error) {
@@ -110,9 +110,9 @@ if (logoutBtn) {
     e.preventDefault();
     try {
       await axios.get("/api/logout");
-      window.location.href = "/login/index.html";
+      window.location.href = "/login/";
     } catch (error) {
-      window.location.href = "/login/index.html";
+      window.location.href = "/login/";
     }
   });
 }

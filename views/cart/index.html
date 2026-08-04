@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soldaduras Zamora - Carrito</title>
+    <link rel="stylesheet" href="/output.css" />
+  </head>
+  <body class="bg-zinc-900 text-white min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-zinc-950">
+    
+    <!-- NOTIFICACIONES -->
+    <div id="notification"></div>
+
+    <!-- NAVBAR SUPERIOR -->
+    <div id="navBar" class="sticky top-0 w-full z-50"></div>
+
+    <!-- CUERPO PRINCIPAL -->
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col gap-6">
+      
+      <!-- HEADER DE LA SECCIÓN -->
+      <header class="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 sm:p-5 flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center font-black text-amber-500 text-sm shadow-inner">
+            SZ
+          </div>
+          <h1 class="font-sans font-bold text-base sm:text-lg uppercase text-zinc-100 tracking-wide">
+            Carrito de Compras
+          </h1>
+        </div>
+        <a href="/catalogo" class="text-xs sm:text-sm font-mono uppercase tracking-wider text-zinc-400 hover:text-amber-400 transition-colors">
+          ← Volver al catálogo
+        </a>
+      </header>
+
+      <!-- CONTENEDOR DEL CARRITO Y RESUMEN -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        
+        <!-- LISTA DE PRODUCTOS -->
+        <section class="lg:col-span-2 bg-zinc-950 border border-zinc-800 rounded-2xl p-5 sm:p-6 shadow-xl">
+          <h2 class="font-sans font-black text-xs uppercase tracking-widest text-amber-500 border-b border-zinc-800 pb-3 mb-4">
+            Productos seleccionados
+          </h2>
+          
+          <div id="cart-items-container" class="flex flex-col gap-4">
+            <!-- Cargado dinámicamente -->
+            <p class="font-mono text-xs sm:text-sm text-zinc-400 py-4">Tu carrito está vacío.</p>
+          </div>
+        </section>
+
+        <!-- RESUMEN DE COMPRA Y DETALLE DE PRECIOS -->
+        <section class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col gap-5 lg:sticky lg:top-[100px]">
+          <h2 class="font-sans font-black text-xs uppercase tracking-widest text-amber-500 border-b border-zinc-800 pb-3">
+            Resumen del pedido
+          </h2>
+
+          <!-- CONTENEDOR DE CADA PRODUCTO CON SU PRECIO INDIVIDUAL -->
+          <div class="flex flex-col gap-3">
+            <span class="font-mono text-[11px] uppercase tracking-wider text-zinc-400">Detalle por producto</span>
+            <div id="order-breakdown-container" class="flex flex-col gap-2 max-h-48 overflow-y-auto pr-1 font-mono text-xs text-zinc-300">
+
+              <div class="text-zinc-500 italic">No hay productos agregados</div>
+            </div>
+          </div>
+
+          <div class="border-t border-zinc-800 pt-4 font-mono text-xs sm:text-sm flex flex-col gap-3 text-zinc-300">
+            <div class="border-zinc-800 pt-3 flex justify-between text-base font-bold text-amber-500">
+              <span>Total</span>
+              <span id="cart-total">$0.00</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <button id="checkout-btn" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-sans font-bold text-xs sm:text-sm uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg shadow-amber-500/10 cursor-pointer">
+              Proceder al pago
+            </button>
+
+            <!-- BOTÓN DE WHATSAPP -->
+            <a id="whatsapp-checkout-btn" href="https://wa.me/TU_NUMERO_AQUI?text=Hola,%20quiero%20finalizar%20mi%20pedido%20de%20Soldaduras%20Zamora" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-600/10 flex items-center justify-center gap-2 cursor-pointer">
+              <span>Pedir por WhatsApp</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./index.js"></script>
+    <script src="/components/navbar.js"></script>
+  </body>
+</html>

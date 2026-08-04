@@ -1,5 +1,6 @@
 import { isAdmin, fetchProducts } from "../catalogo/index.js";
 import { createNotification } from "../components/notification.js";
+import { cardSeccion } from "../catalogo/index.js";
 
 export const showFormEdit = (product) => {
   // 1. Obtener o crear dinámicamente el contenedor en el DOM
@@ -147,7 +148,11 @@ export const showFormEdit = (product) => {
   // Asignar evento al botón de cerrar
   const closeBtn = document.getElementById("new-close-form-btn");
   if (closeBtn) {
-    closeBtn.addEventListener("click", hideModal);
+    closeBtn.addEventListener("click", ()=>{
+      hideModal();
+      cardSeccion.classList.remove("hidden");
+    });
+  
   }
 
   // Manejar el submit del formulario

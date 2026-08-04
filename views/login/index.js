@@ -31,7 +31,7 @@ loginForm.addEventListener("submit", async (e) => {
     createNotification(false, "Inicio de sesión exitoso.");
 
     setTimeout(() => {
-      window.location.href = "../catalogo/index.html";
+      window.location.href = "../catalogo/";
     }, 1500);
   } catch (error) {
     console.error("Error detectado en el login:");

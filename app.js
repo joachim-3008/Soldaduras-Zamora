@@ -24,12 +24,15 @@ dns.setServers(["8.8.8.8", "8.8.4.4"]);
   }
 })();
 
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static("src"));
 app.use(express.static("views"));
+app.use(express.static("src"));
 app.use(cookieParser());
+
 
 app.use("/", express.static(path.resolve("views", "home")));
 app.use("/nuevoProd", express.static(path.resolve("views", "nuevoProd")));
@@ -43,7 +46,8 @@ app.use(
   "/privacy",
   express.static(path.resolve("views", "termsAndConditions", "privacy.html")),
 );
-app.use("/catalogo", express.static(path.resolve("views", "catalogo")));
+app.use("/catalogo", express.static(path.resolve("views", "catalogo")))
+app.use("/cart", express.static(path.resolve("views", "cart")));
 
 app.post("/api/signup", registerUser);
 app.use("/api/login", loginRouter);

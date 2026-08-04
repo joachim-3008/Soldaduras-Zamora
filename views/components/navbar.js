@@ -88,12 +88,39 @@ const createNavEditProd = () => {
       </nav>
     </header>`;
 };
+const createNavCarrito = () => {
+    navBar.innerHTML = `<header class="bg-zinc-950 border-b border-zinc-800 px-4 sm:px-6 py-3 flex items-center justify-between shadow-lg shrink-0 sticky top-0 z-40">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-amber-500 shrink-0 flex items-center justify-center bg-zinc-900 shadow-md">
+          <img
+            src="/media/logo-soldadura.jpg"
+            alt="Soldaduras Zamora"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <span class="font-sans font-black text-xs sm:text-base tracking-widest uppercase block whitespace-nowrap text-zinc-100">
+          Soldaduras Zamora
+        </span>
+      </div>
 
-if (window.location.pathname === '/catalogo/index.html'){
+      <nav class="flex items-center gap-4 sm:gap-6 font-mono text-xs uppercase tracking-wider">
+        <a href="/catalogo/" class="flex items-center gap-2 text-zinc-300 hover:text-amber-400 transition-all font-bold whitespace-nowrap">
+
+        </a>
+        <button id="logout-button" class="text-zinc-400 hover:text-red-400 transition-all font-bold flex items-center gap-1 cursor-pointer bg-transparent border-none outline-none whitespace-nowrap">
+          ✕ <span class="hidden sm:inline">Cerrar Sesión</span>
+        </button>
+      </nav>
+    </header>`;
+};
+
+if (window.location.pathname === '/catalogo/'){
     createNavCatalogo();
 
 }else if (window.location.pathname === '/nuevoProd/'){
     createNavNuevoProd();
 }else if(window.location.pathname === '/editProd/'){
   createNavEditProd();
+}else if(window.location.pathname === '/cart/'){
+  createNavCarrito();
 }

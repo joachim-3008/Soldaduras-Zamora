@@ -3,6 +3,7 @@ import { createNotification } from "../components/notification.js";
 import { renderProducts } from "./renderProduct.js";
 import { fetchProducts } from "../catalogo/index.js";
 import { showFormEdit } from "../editProd/index.js";
+import { cardSeccion } from "../catalogo/index.js";
 
 const productDetailContent = document.getElementById("product-detail-content");
 const productDetailView = document.getElementById("product-detail-view");
@@ -11,6 +12,7 @@ const backToCatalogBtn = document.getElementById("back-to-catalog-btn");
 axios.defaults.withCredentials = true;
 
 const showProductDetail = (product) => {
+  cardSeccion.classList.add("hidden");
   productDetailView.classList.remove("hidden");
   const pictures = product.pictures || [];
   const productImage = pictures[0] || null;
@@ -53,6 +55,7 @@ const showProductDetail = (product) => {
         </div>
       </div>
     </div>
+    
     <div class="w-full lg:w-1/2 flex flex-col gap-4">
       <div class="bg-zinc-900 rounded-3xl p-5">
         <p class="text-[10px] uppercase tracking-widest text-zinc-500">Categoría</p>
@@ -62,18 +65,62 @@ const showProductDetail = (product) => {
         <p class="text-[10px] uppercase tracking-widest text-zinc-500">Disponibilidad</p>
         <p class="font-bold text-zinc-100">${product.available || product.availability === 'available' ? "Disponible" : "No disponible"}</p>
       </div>
+
+      <!-- BOTÓN DE AGREGAR AL CARRITO -->
+      <button id="add-to-cart-detail-btn" type="button" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-sans font-black uppercase text-xs sm:text-sm py-4 rounded-2xl transition-all shadow-lg shadow-amber-500/10 cursor-pointer flex items-center justify-center gap-2">
+        <span>Agregar al carrito</span>
+      </button>
+
       ${
         isAdmin
           ? `
-        <div class="flex gap-3">
-          <button id="edit-product-btn" class="flex-1 bg-amber-500 hover:bg-amber-400 text-zinc-950 uppercase text-xs font-black py-3 rounded-2xl transition-all cursor-pointer">Editar</button>
-          <button id="delete-product-btn" class="flex-1 bg-red-500 hover:bg-red-400 text-zinc-950 uppercase text-xs font-black py-3 rounded-2xl transition-all cursor-pointer">Eliminar</button>
+        <div class="flex gap-3 pt-2 border-t border-zinc-800">
+          <button id="edit-product-btn" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 uppercase text-xs font-black py-3 rounded-2xl transition-all cursor-pointer">Editar</button>
+          <button id="delete-product-btn" class="flex-1 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-zinc-950 border border-red-500/30 uppercase text-xs font-black py-3 rounded-2xl transition-all cursor-pointer">Eliminar</button>
         </div>
       `
           : ""
       }
     </div>
   `;
+
+// Listener para el botón recién inyectado
+document.getElementById("add-to-cart-detail-btn").addEventListener("click", () => {
+  const productId = product._id || product.id;
+  const productName = product.name || product.nombre;
+  const productPrice = Number(product.price || product.precio || 0);
+  const productStock = Number(product.stock || 0); // Stock máximo disponible
+
+  if (!productId) {
+    alert("Error: No se pudo identificar el ID del producto.");
+    return;
+  }
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existingIndex = cart.findIndex(item => item.product_id === productId);
+
+  let currentQuantityInCart = existingIndex > -1 ? cart[existingIndex].product_quantity : 0;
+
+  if (currentQuantityInCart + 1 > productStock) {
+    alert(`No esta disponible este producto`);
+    return;
+  }
+
+  if (existingIndex > -1) {
+    cart[existingIndex].product_quantity += 1;
+  } else {
+    cart.push({
+      product_id: productId,
+      product_name: productName,
+      unit_price: productPrice,
+      product_quantity: 1,
+      stock: productStock // Guardamos el stock para validarlo luego en el carrito
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`¡${productName} agregado al carrito con éxito!`);
+});
 
   const editBtn = document.getElementById("edit-product-btn");
   const deleteBtn = document.getElementById("delete-product-btn");
@@ -134,6 +181,7 @@ const showProductDetail = (product) => {
 if (backToCatalogBtn) {
   backToCatalogBtn.addEventListener("click", () => {
     productDetailView.classList.add("hidden");
+    cardSeccion.classList.remove("hidden");
   });
 }
 

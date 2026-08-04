@@ -9,19 +9,9 @@ const currentUser = {
   roles: [],
 };
 
+const cardSeccion = document.getElementById("card-seccion")
 const addProductCard = document.getElementById("add-product-card"); 
-// const createProductCard = document.getElementById("create-product-card");
-// const closeFormBtn = document.getElementById("close-form-btn");
-// const newProductForm = document.getElementById("new-product-form");
 const searchInput = document.getElementById("search-input");
-const prodName = document.getElementById("prod-name");
-const prodSku = document.getElementById("prod-sku");
-const prodDesc = document.getElementById("prod-desc");
-const prodPrice = document.getElementById("prod-price");
-const prodStock = document.getElementById("prod-stock");
-const prodCategory = document.getElementById("prod-category");
-const prodImg = document.getElementById("prod-img");
-// const prodAvailability = document.getElementById("prod-availability");
 const currentCategoryName = document.getElementById("current-category-name");
 const logoutBtn = document.getElementById("logout-button");
 
@@ -32,17 +22,19 @@ let isAdmin = false;
 
 axios.defaults.withCredentials = true;
 
-logoutBtn.addEventListener("click", async (e) => {
-  e.preventDefault();
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
 
-  try {
-    await axios.get("/api/logout");
-    window.location.href = "/login/index.html";
-  } catch (error) {
-    console.error("Error during logout:", error);
-    window.location.href = "/login/index.html";
-  }
-});
+    try {
+      await axios.get("/api/logout");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Error during logout:", error);
+      window.location.href = "/login";
+    }
+  });
+}
 
 const API = {
   products: "/api/products",
@@ -127,6 +119,7 @@ const handleSearch = () => {
   renderProducts(filtered);
 };
 
+//filtro para saber si es admin
 if (addProductCard) {
   addProductCard.addEventListener("click", () => {
     if (!isAdmin) {
@@ -148,4 +141,4 @@ const init = async () => {
 
 init();
 
-export {fetchProducts, isAdmin}
+export {fetchProducts, isAdmin, cardSeccion}
