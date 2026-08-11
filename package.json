@@ -16,6 +16,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@tailwindcss/cli": "^4.3.1",
     "axios": "^1.18.1",
     "bcrypt": "^6.0.0",

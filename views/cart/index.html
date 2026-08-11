@@ -57,7 +57,6 @@
           <div class="flex flex-col gap-3">
             <span class="font-mono text-[11px] uppercase tracking-wider text-zinc-400">Detalle por producto</span>
             <div id="order-breakdown-container" class="flex flex-col gap-2 max-h-48 overflow-y-auto pr-1 font-mono text-xs text-zinc-300">
-
               <div class="text-zinc-500 italic">No hay productos agregados</div>
             </div>
           </div>
@@ -70,12 +69,9 @@
           </div>
 
           <div class="flex flex-col gap-3">
-            <button id="checkout-btn" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 font-sans font-bold text-xs sm:text-sm uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg shadow-amber-500/10 cursor-pointer">
-              Proceder al pago
-            </button>
-
-            <!-- BOTÓN DE WHATSAPP -->
-            <a id="whatsapp-checkout-btn" href="https://wa.me/TU_NUMERO_AQUI?text=Hola,%20quiero%20finalizar%20mi%20pedido%20de%20Soldaduras%20Zamora" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-600/10 flex items-center justify-center gap-2 cursor-pointer">
+            <!-- BOTÓN DE PROCEDER AL PAGO / PAYPAL -->
+           <div id="paypal-button-container" class="w-full"></div>  <!-- BOTÓN DE WHATSAPP -->
+            <a id="whatsapp-checkout-btn" href="https://wa.me/584242667278?text=Hola,%20quiero%20finalizar%20mi%20pedido%20de%20Soldaduras%20Zamora" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-600/10 flex items-center justify-center gap-2 cursor-pointer">
               <span>Pedir por WhatsApp</span>
             </a>
           </div>
@@ -85,8 +81,15 @@
 
     </main>
 
+    <!-- SCRIPTS ORDENADOS CORRECTAMENTE -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="./index.js"></script>
+    
+    <!-- 1. El SDK de PayPal va PRIMERO para que la variable 'paypal' exista -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA2Bz-ICRRuXnKrvlXDTx3japSax05o9PXxLe-O_n5wGEnf5l3RHzsbDoJ7nqQCX6z4Vxvk5-aQFLkXWc&currency=USD"></script>
+
+    <!-- 2. Tu index.js SIN 'type="module"' para que las funciones globales respondan bien -->
+    <script src="./index.js"></script>
+    
     <script src="/components/navbar.js"></script>
   </body>
 </html>

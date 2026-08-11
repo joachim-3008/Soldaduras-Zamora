@@ -24,7 +24,7 @@ const pedidoSchema = new mongoose.Schema({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    required: false,
   },
   items: {
     type: [itemSchema],
@@ -34,6 +34,10 @@ const pedidoSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0,
+  },
+  payment_info: {
+    type: Object,
+    default: {},
   },
 });
 
