@@ -132,11 +132,9 @@ const inicializarPayPal = () => {
                 breakdownContainer.innerHTML = "";
               }
 
-              showNotification("Pago exitoso! Pedido registrado y stock actualizado.");
-
               setTimeout(() => {
                 window.location.reload();
-              }, 2500);
+              }, 10000);
             })
             .catch((err) => {
               console.error("Error al capturar la orden:", err);
