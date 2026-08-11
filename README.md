@@ -143,4 +143,9 @@ http://localhost:3000/
 - Internacionalización de mensajes
 - Implementación de un panel administrativo real
 
+## Pruebas PayPal
+
+- sb-67pc252409287@personal.example.com
+- 4rS0O#(U
+  
 ---
